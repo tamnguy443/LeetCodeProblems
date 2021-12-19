@@ -1,1 +1,1 @@
-# GitHubProblems
+# LeetCodeProblems
