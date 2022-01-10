@@ -20,19 +20,27 @@ In this case, the max area of water (blue section) the container can contain is 
 class Solution {
     public int maxArea(int[] height) {
         int maxA = 0;
+        
         for(int i = 0; i < height.length; i++) {
-            for(int j = i; j < height.length; j++) {
-                
+           
+            outerloop:
+            for(int j = height.length - 1; j > i; j--) {
+                if(maxA != 0 && j != 1 && (height[i] * j - 1) < maxA / (j - 1))  {
+
+                    break outerloop;
+                }
                 
                 int temp = 0;
                 if(height[j] <= height[i]) {
                     temp = height[j] * (j - i);
                     
                     if(temp > maxA) maxA = temp;
+                    
                 } else if(height[i] <= height[j]) {
                     temp = height[i] * (j - i);
                     
                     if(temp > maxA) maxA = temp;
+                    
                 }
                 
             }
