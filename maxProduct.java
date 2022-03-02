@@ -17,6 +17,10 @@ Explanation: [2,3] has the largest product 6.
 */
 class Solution {
     public int maxProduct(int[] nums) {
+        if(nums.length == 1) {
+            return nums[0];
+        }
+        
         int res = 0;
         
         for(int n : nums) {
@@ -40,7 +44,7 @@ class Solution {
             );
             
             curMin = Math.min(
-                temp, Math.max(
+                temp, Math.min(
                 n * curMin, n 
                 )
             );
