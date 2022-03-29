@@ -29,3 +29,22 @@ class Solution {
         
     }
 }
+/*
+public int findDuplicate(int[] nums) {
+
+        boolean[] boo = new boolean[nums.length];
+        //default bool is false
+        
+        for(int i=0;i<nums.length;i++){
+        
+            if(boo[nums[i]]){
+                return nums[i];
+        }
+        
+        boo[nums[i]] = true;
+            
+        }
+    
+        return -1;
+    }
+*/
