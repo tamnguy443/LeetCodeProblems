@@ -25,23 +25,25 @@ class Solution {
             
         }
         
-        return 0;       
+        return -1;       
         
     }
 }
 /*
-public int findDuplicate(int[] nums) {
+    public int findDuplicate(int[] nums) {
 
+        Arrays.sort(nums);
+        
         boolean[] boo = new boolean[nums.length];
         //default bool is false
         
-        for(int i=0;i<nums.length;i++){
+        for(int i = 0; i < nums.length; i++){
         
-            if(boo[nums[i]]){
+            if(boo[nums[i]]) {
                 return nums[i];
-        }
+            }
         
-        boo[nums[i]] = true;
+            boo[nums[i]] = true;
             
         }
     
