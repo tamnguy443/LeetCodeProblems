@@ -12,8 +12,6 @@ class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> res = new ArrayList<Integer>();
         
-        if(matrix.length == 0 || matrix[0].length == 0) return res;
-        
         int top = 0; //top left row start
         int bottom = matrix.length - 1; //bottom left row start
         int left = 0; //top left column start
