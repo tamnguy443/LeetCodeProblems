@@ -25,25 +25,25 @@ class Solution {
                 res.add(matrix[top][i]);
             } 
             top++;
-            if(left > right || top > bottom) break;
+            if(top > bottom) break;
             
             for(int i = top; i <= bottom; i++) {
                 res.add(matrix[i][right]);
             } 
             right--;
-            if(left > right || top > bottom) break;
+            if(left > right) break;
             
             for(int i = right; i >= left; i--) {
                 res.add(matrix[bottom][i]);
             } 
             bottom--;
-            if(left > right || top > bottom) break;
+            if(top > bottom) break;
             
             for(int i = bottom; i >= top; i--) {
                 res.add(matrix[i][left]);
             } 
             left++;
-            if(left > right || top > bottom) break;
+            if(left > right) break;
             
         }
         
