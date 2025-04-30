@@ -13,23 +13,22 @@ Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 st
 */
 class Solution {
     public int jump(int[] nums) {
-        int near = 0;
-        int far = 0;
-        int jump = 0;
+        int[] res = new int[nums.length];
+        res[nums.length - 1] = 0;
+        // initialise all to max possible jumps + 1 denoting dp[i] hasn't been computed yet
+        for(int i = 0; i < res.length - 2; i++) {
+            res[i] = 10001;
+        }
+// start from last index. No jumps required to reach end if we are already here
+// same as above. For each index, explore all jump sizes and use the one requiring minimum jumps to reach end
+        for(int i = nums.length - 2; i >= 0; i--) {
+            for(int j = 1; j <= nums[i]; j++) {
 
-        while(far < nums.length - 1) {
-            int farthest = 0;
-
-            for(int i = 0; i < far + 1; i++) {
-                //farthest = max of farthest and current position of max jump
-                farthest = Math.max(farthest, i + nums[i]);
-
+                // min(n-1, i + jumpLen) for bounds handling
+                res[i] = Math.min(res[i], 1 + res[Math.min(nums.length - 1, i + j)]);
             }
-            jump++;
-            near = far + 1;
-            far = farthest;
         }
 
-        return jump;
+        return res[0];
     }
 }
