@@ -1,6 +1,4 @@
 /*
-December 23rd 2021
-
 Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
 An input string is valid if:
@@ -8,47 +6,36 @@ An input string is valid if:
 Open brackets must be closed by the same type of brackets.
 Open brackets must be closed in the correct order.
 
+Example 2:
+Input: s = "()[]{}"
+Output: true
 */
 class Solution {
-	public boolean isValid(String s) {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
 
-		if (s.length() % 2 != 0) {
-			return false;
-		}
-        if(s.equals("([}}])")) {
-			return false;
-		}
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
 
-		Stack<Character> stack = new Stack<Character>();
-		stack.push(s.charAt(0));
-		for (int i = 1; i < s.length(); i++) {
+            if((c == ')' || c == ']' || c == '}') && !stack.isEmpty() ) {
+                if(isPair(stack.peek(),c)) {
+                    stack.pop();
+                    
+                } else {
+                    stack.push(c);
+                }
+            } else {
+                stack.push(c);
+            }
 
-			if ((s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '[')) {
+        }
 
-				stack.push(s.charAt(i));
+        return stack.isEmpty();
+    }
 
-			} else if(stack.isEmpty()) {
-				stack.push('1');
-			} else {				
-
-				if (s.charAt(i) == ')' && !stack.isEmpty() && stack.peek() == '(' ) {
-					stack.pop();
-
-				} else if (s.charAt(i) == '}'&& !stack.isEmpty() && stack.peek() == '{') {
-					stack.pop();
-					
-				} else if (s.charAt(i) == ']'&& !stack.isEmpty() && stack.peek() == '[') {
-					stack.pop();
-
-				}
-
-			}
-		}
-
-		if (stack.isEmpty()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    private boolean isPair(char last, char cur) {
+        return (last == '(' && cur == ')') ||
+               (last == '{' && cur == '}') ||
+               (last == '[' && cur == ']');
+    }   
 }
